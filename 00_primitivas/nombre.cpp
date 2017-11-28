@@ -5,6 +5,6 @@
 int main(){
 
 	printf("Hola, mundo.\n");/*Llamada a la función */
-	
+
 	return EXIT_SUCCESS;
 }
