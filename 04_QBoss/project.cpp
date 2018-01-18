@@ -10,13 +10,18 @@ int main(){
 
     double vertice[D];
 
-    system("toilet --gay -fpagga QBoss \n");
+    /* Entrada de datos */
+    printf("(x, y, z): ");
+    scanf(" ( %lf , %lf , %lf  )",
+            &vertice[X], &vertice[Y], &vertice[Z]);
 
-    printf("(x, y, z):" );
-    scanf(" ( %lf , %lf , %lf  ) ", &vertice[X], &vertice[Y], &vertice[Z]);
 
-    printf("\n(%.2lf, %.2lf, %.2lf)\t", vertice[X], vertice[Y], vertice[Z]);
-    printf("=>\t(%.2lf, %.2lf)\n",vertice[X]/vertice[Z], -vertice[Y]/vertice[Z]);
+    /* Salida de datos */
+    printf("( %.2lf, %.2lf, %.2lf  ) =>\t",
+            vertice[X], vertice[Y], vertice[Z]);
+    printf("( %.2lf, %.2lf  )\n",
+            vertice[X] / vertice[Z],
+            -vertice[Y] / vertice[Z]);
 
-return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
