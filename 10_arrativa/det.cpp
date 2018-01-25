@@ -6,9 +6,9 @@
 int main(){
     int sum = 0;
     int a[N][N] = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
+        {2, 6, 4},
+        {6, 4, 5},
+        {8, 2, 7}
     };
 
     for (int d=0; d<N; d++){
@@ -30,8 +30,4 @@ int main(){
     printf("Determinante = %i\n", sum);
 
     return EXIT_SUCCESS;
-}
-}
-}
-}
 }
