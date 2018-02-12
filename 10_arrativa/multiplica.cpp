@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 3
-#define A 2
 
 void ver(double a[A][A]){
     printf("\n");
@@ -12,6 +10,7 @@ void ver(double a[A][A]){
         printf("\n");
     }
     printf("\n");
+    system("clear");
 }
 
 void verb(double b[A][N]){
@@ -25,32 +24,35 @@ void verb(double b[A][N]){
 }
 
 int main(){
-    double a[A][A] = {
-        {2, 3},
-        {3, 4}
-    };
 
-    double b[A][N] = {
-        {1, 3, 6},
-        {3, 6, 2}
-    };
+bool otro_dato = true;
 
-    double c[A][N] = {
-    };
 
-    ver(a);
-    verb(b);
-
-    for (int uf=0; uf<N; uf++){
-        for (int uc=0; uc<N; uc++){
-            c[uf][uc]=0;
-            for (int dc=0; dc<A; dc++){
-                c[uf][uc] += a[uf][dc] * b[dc][uc];
-            }
-        }
+    double *a[][] = NULL;
+    for (int i=1; otro_dato; i++){
+        a = (double *) realloc(a, i*sizeof(double));
+        *(a+i-1) = i;
     }
 
-    verb(c);
+    double *b[][] = NULL;
+    for (int i=1; otro_dato; i++){
+        b = (double *) realloc(b, i*sizeof(double));
+        *(b+i-1) = i;
+    }
 
-    return EXIT_SUCCESS;
+
+    double *c[][] = NULL;
+
+for (int uf=0; uf<N; uf++){
+    for (int uc=0; uc<N; uc++){
+        c[uf][uc]=0;
+        for (int dc=0; dc<A; dc++){
+            c[uf][uc] += a[uf][dc] * b[dc][uc];
+        }
+    }
+}
+
+verb(c);
+
+return EXIT_SUCCESS;
 }
