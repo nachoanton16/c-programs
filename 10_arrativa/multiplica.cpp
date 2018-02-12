@@ -14,10 +14,10 @@ void ver(double a[A][A]){
     printf("\n");
 }
 
-void verb(double b[N][A]){
+void verb(double b[A][N]){
     printf("\n");
-    for (int f=0; f<N; f++){
-        for (int c=0; c<A; c++)
+    for (int f=0; f<A; f++){
+        for (int c=0; c<N; c++)
             printf("%6.2lf", b[f][c]);
         printf("\n");
     }
@@ -29,42 +29,23 @@ int main(){
         {2, 3},
         {3, 4}
     };
- //          coef[N], k;
 
-    double b[N][A] = {
-        {1, 3},
-        {2, 5},
-        {3, 6}
+    double b[A][N] = {
+        {1, 3, 6},
+        {3, 6, 2}
     };
 
-    double c[N][A] = {
+    double c[A][N] = {
     };
-
-//    int cima = 0;
 
     ver(a);
     verb(b);
 
-    /* for (int n=0; n<2; n++){
-     *        coef[cima++] = k = a[n][n];
-     *               for (int col=0; col<N; col++)
-     *                      a[n][col] *= k;
-     *                             for (int f=n+1; f<N; f++){
-     *                                    k = a[f][n];
-     *                                           for (int col=0; col<N; col++)
-     *                                                  a[f][col] -= (a[n][col] * k);
-     *                                                         }
-     *                                                                ver(a);
-     *                                                                       }*/
-    /*
-     *        for (int f=+1; f<N; f++){
-     *               k = a[f][n];
-     *                      }*/
-    for (int uf=0; uf<A; uf++){
-        for (int uc=0; uc<A; uc++){
+    for (int uf=0; uf<N; uf++){
+        for (int uc=0; uc<N; uc++){
             c[uf][uc]=0;
-            for (int dc=0; dc<N; dc++){
-                c[uf][uc] = a[uf][dc] * b[dc][uc];
+            for (int dc=0; dc<A; dc++){
+                c[uf][uc] += a[uf][dc] * b[dc][uc];
             }
         }
     }
