@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 int main(){
 
@@ -60,21 +61,14 @@ int main(){
     int nuevo_contadory = 0;
     int nuevo_contadorz = 0;
     printf("Escribe un texto: ");
-    /*    longitud = strlen();*/
 
-    /*
-       mirar = getc(stdin);
-       switch(mirar)
-       case contadora
-       ungetc(mirar, stdin);
-       scanf();
-       break;
-       */
+
     do{
         mirar = getc(stdin);
         if (mirar == 'a' || mirar == 'A'){
-            ungetc(mirar, stdin);
-            scanf(" %*1[aA]");
+            /*ungetc(mirar, stdin);*/
+            /*scanf(" %*1[aA]");*/
+            /*strchr();*/
             contadora++;
         }
 
@@ -228,66 +222,65 @@ int main(){
             contadorz++;
         }
     }
-    while(getchar()!='\n');
+    while(mirar!='\n');
 
     cuenta = contadora + contadorb + contadorc + contadord + contadore + contadorf + contadorg + contadorh + contadori + contadorj + contadork + contadorl + contadorm + contadorn + contadoro + contadorp + contadorq + contadorr + contadors + contadort + contadoru + contadorv + contadorw + contadorx + contadory + contadorz;
 
     nuevo_contadora = (contadora * 100) / cuenta;
-    nuevo_contadorb = contadorb * 100 / cuenta;
-    nuevo_contadorc = contadorc * 100 / cuenta;
-    nuevo_contadord = contadord * 100 / cuenta;
-    nuevo_contadore = contadore * 100 / cuenta;
-    nuevo_contadorf = contadorf * 100 / cuenta;
-    nuevo_contadorg = contadorg * 100 / cuenta;
-    nuevo_contadorh = contadorh * 100 / cuenta;
-    nuevo_contadori = contadori * 100 / cuenta;
-    nuevo_contadorj = contadorj * 100 / cuenta;
-    nuevo_contadork = contadork * 100 / cuenta;
-    nuevo_contadorl = contadorl * 100 / cuenta;
-    nuevo_contadorm = contadorm * 100 / cuenta;
-    nuevo_contadorn = contadorn * 100 / cuenta;
-    nuevo_contadoro = contadoro * 100 / cuenta;
-    nuevo_contadorp = contadorp * 100 / cuenta;
-    nuevo_contadorq = contadorq * 100 / cuenta;
-    nuevo_contadorr = contadorr * 100 / cuenta;
-    nuevo_contadors = contadors * 100 / cuenta;
-    nuevo_contadort = contadort * 100 / cuenta;
-    nuevo_contadoru = contadoru * 100 / cuenta;
-    nuevo_contadorv = contadorv * 100 / cuenta;
-    nuevo_contadorw = contadorw * 100 / cuenta;
-    nuevo_contadorx = contadorx * 100 / cuenta;
-    nuevo_contadory = contadory * 100 / cuenta;
-    nuevo_contadorz = contadorz * 100 / cuenta;
+    nuevo_contadorb = (contadorb * 100) / cuenta;
+    nuevo_contadorc = (contadorc * 100) / cuenta;
+    nuevo_contadord = (contadord * 100) / cuenta;
+    nuevo_contadore = (contadore * 100) / cuenta;
+    nuevo_contadorf = (contadorf * 100) / cuenta;
+    nuevo_contadorg = (contadorg * 100) / cuenta;
+    nuevo_contadorh = (contadorh * 100) / cuenta;
+    nuevo_contadori = (contadori * 100) / cuenta;
+    nuevo_contadorj = (contadorj * 100) / cuenta;
+    nuevo_contadork = (contadork * 100) / cuenta;
+    nuevo_contadorl = (contadorl * 100) / cuenta;
+    nuevo_contadorm = (contadorm * 100) / cuenta;
+    nuevo_contadorn = (contadorn * 100) / cuenta;
+    nuevo_contadoro = (contadoro * 100) / cuenta;
+    nuevo_contadorp = (contadorp * 100) / cuenta;
+    nuevo_contadorq = (contadorq * 100) / cuenta;
+    nuevo_contadorr = (contadorr * 100) / cuenta;
+    nuevo_contadors = (contadors * 100) / cuenta;
+    nuevo_contadort = (contadort * 100) / cuenta;
+    nuevo_contadoru = (contadoru * 100) / cuenta;
+    nuevo_contadorv = (contadorv * 100) / cuenta;
+    nuevo_contadorw = (contadorw * 100) / cuenta;
+    nuevo_contadorx = (contadorx * 100) / cuenta;
+    nuevo_contadory = (contadory * 100) / cuenta;
+    nuevo_contadorz = (contadorz * 100) / cuenta;
 
-    
-    
+
     /*Imprimir los contadores*/
-    printf("El %i de letras del texto son 'a'.\n", nuevo_contadora);
-    printf("Hay %i en el texto.\n", contadorb);
-    printf("Hay %i en el texto.\n", contadorc);
-    printf("Hay %i en el texto.\n", contadord);
-    printf("Hay %i en el texto.\n", contadore);
-    printf("Hay %i en el texto.\n", contadorf);
-    printf("Hay %i en el texto.\n", contadorg);
-    printf("Hay %i en el texto.\n", contadorh);
-    printf("Hay %i en el texto.\n", contadori);
-    printf("Hay %i en el texto.\n", contadorj);
-    printf("Hay %i en el texto.\n", contadork);
-    printf("Hay %i en el texto.\n", contadorl);
-    printf("Hay %i en el texto.\n", contadorm);
-    printf("Hay %i en el texto.\n", contadorn);
-    printf("Hay %i en el texto.\n", contadoro);
-    printf("Hay %i en el texto.\n", contadorp);
-    printf("Hay %i en el texto.\n", contadorq);
-    printf("Hay %i en el texto.\n", contadorr);
-    printf("Hay %i en el texto.\n", contadors);
-    printf("Hay %i en el texto.\n", contadort);
-    printf("Hay %i en el texto.\n", contadoru);
-    printf("Hay %i en el texto.\n", contadorv);
-    printf("Hay %i en el texto.\n", contadorw);
-    printf("Hay %i en el texto.\n", contadorx);
-    printf("Hay %i en el texto.\n", contadory);
-    printf("Hay %i en el texto.\n", contadorz);
+    printf("El %i%% de letras del texto son 'a'.\n", nuevo_contadora);
+    printf("El %i%% de letras del texto son 'b'.\n", nuevo_contadorb);
+    printf("El %i%% de letras del texto son 'c'.\n", nuevo_contadorc);
+    printf("El %i%% de letras del texto son 'd'.\n", nuevo_contadord);
+    printf("El %i%% de letras del texto son 'e'.\n", nuevo_contadore);
+    printf("El %i%% de letras del texto son 'f'.\n", nuevo_contadorf);
+    printf("El %i%% de letras del texto son 'g'.\n", nuevo_contadorg);
+    printf("El %i%% de letras del texto son 'h'.\n", nuevo_contadorh);
+    printf("El %i%% de letras del texto son 'i'.\n", nuevo_contadori);
+    printf("El %i%% de letras del texto son 'j'.\n", nuevo_contadorj);
+    printf("El %i%% de letras del texto son 'k'.\n", nuevo_contadork);
+    printf("El %i%% de letras del texto son 'l'.\n", nuevo_contadorl);
+    printf("El %i%% de letras del texto son 'm'.\n", nuevo_contadorm);
+    printf("El %i%% de letras del texto son 'n'.\n", nuevo_contadorn);
+    printf("El %i%% de letras del texto son 'o'.\n", nuevo_contadoro);
+    printf("El %i%% de letras del texto son 'p'.\n", nuevo_contadorp);
+    printf("El %i%% de letras del texto son 'q'.\n", nuevo_contadorq);
+    printf("El %i%% de letras del texto son 'r'.\n", nuevo_contadorr);
+    printf("El %i%% de letras del texto son 's'.\n", nuevo_contadors);
+    printf("El %i%% de letras del texto son 't'.\n", nuevo_contadort);
+    printf("El %i%% de letras del texto son 'u'.\n", nuevo_contadoru);
+    printf("El %i%% de letras del texto son 'v'.\n", nuevo_contadorv);
+    printf("El %i%% de letras del texto son 'w'.\n", nuevo_contadorw);
+    printf("El %i%% de letras del texto son 'x'.\n", nuevo_contadorx);
+    printf("El %i%% de letras del texto son 'y'.\n", nuevo_contadory);
+    printf("El %i%% de letras del texto son 'z'.\n", nuevo_contadorz);
 
 
     return EXIT_SUCCESS;
