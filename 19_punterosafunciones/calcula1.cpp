@@ -102,7 +102,7 @@ int main(){
 
 	for(int i=0; i<MAX-3; i++){
 		int operador = pop(&op);
-		printf("%s\n", catalogo[operador].nombre);
+		/*printf("%s\n", catalogo[operador].nombre);*/
 		double resultado = catalogo[operador].op((double) pop(&datos), (double) pop(&datos));
 		/*printf("%s\n", catalogo[operador].nombre);*/
 		printf("%5.2lf\n", resultado);
