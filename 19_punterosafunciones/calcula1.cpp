@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 #define N 16
-#define MAX 6//0x100
+#define MAX 6 //0x100
 
-#ifndef NODEBUG
+#ifdef DEBUG
 #define DEBUG(...) printf(__VA_ARGS__)
 #else
 #define DEBUG(...)
@@ -12,50 +12,50 @@
 
 int error = 0;
 const char *mssg[] = {
-	"Todo OK.",
-	"Pila vacía.",
-	"Pila llena."
+    "Todo OK.",
+    "Pila vacía.",
+    "Pila llena."
 };
 
 typedef struct {
-	char nombre[N];
-	double (*op)(double, double);
+    char nombre[N];
+    double (*op)(double, double);
 } Operacion;
 
 typedef struct {
-	int data[MAX];
-	int cima;
+    int data[MAX];
+    int cima;
 } Pila;
 
 
 enum {
-	suma,
-	resta,
-	multiplica,
-	division,
-	OPERA
+    suma,
+    resta,
+    multiplica,
+    division,
+    OPERA
 };
 
 bool push(int dato, Pila *pila){
-	if (pila->cima >= MAX){
-		error = 2;
-		return false;
-	}
-	error = 0;
-	pila->data[pila->cima++] = dato;
-	return true;
+    if (pila->cima >= MAX){
+        error = 2;
+        return false;
+    }
+    error = 0;
+    pila->data[pila->cima++] = dato;
+    return true;
 }
 
 int pop(Pila *pila) {
-	if (pila->cima == 0){
-		error = 1;
-		return 0;
-	}
-	error = 0;
-	
-	pila->cima--;
-	DEBUG("<- %i\n", pila->data[pila->cima]);
-	return pila->data[pila->cima];
+    if (pila->cima == 0){
+        error = 1;
+        return 0;
+    }
+    error = 0;
+
+    pila->cima--;
+    DEBUG("<- %i\n", pila->data[pila->cima]);
+    return pila->data[pila->cima];
 }
 
 double sum(double op1, double op2) { return op1 + op2; }
@@ -65,49 +65,50 @@ double div(double op1, double op2) { return op1 / op2; }
 
 int main(){
 
-	Pila op, datos;
-	double op1, op2;
-	char opera;
-	bool acaba = true;
-	Operacion catalogo[] = {
-		{"suma",  &sum},
-		{"resta", &res},
-		{"multiplica", &mul},
-		{"division", &div}
-	};
+    Pila op, datos;
+    op.cima = 0;
+    datos.cima = 0;
+    double op1, op2;
+    char opera;
+    Operacion catalogo[] = {
+        {"suma",  &sum},
+        {"resta", &res},
+        {"multiplica", &mul},
+        {"division", &div}
+    };
 
-	while(acaba == true){
-		printf("Operacion: ");
-		scanf(" %lf %c %lf", &op1, &opera, &op2);
-		acaba = push(op2, &datos);
-		acaba = push(op1, &datos);
+    while(op.cima < MAX/2){
+        printf("Operacion: ");
+        scanf(" %lf %c %lf", &op1, &opera, &op2);
+        push(op2, &datos);
+        push(op1, &datos);
 
-		if(acaba == true){
-			switch(opera) {
-				case '+':
-					push(suma, &op);
-					break;
-				case '-':
-					push(resta, &op);
-					break;
-				case '*':
-					push(multiplica, &op);
-					break;
-				case '/':
-					push(division, &op);
-					break;
-			}
-		}
-	}
+        switch(opera) {
+            case '+':
+                push(suma, &op);
+                break;
+            case '-':
+                push(resta, &op);
+                break;
+            case '*':
+                push(multiplica, &op);
+                break;
+            case '/':
+                push(division, &op);
+                break;
+        }
+    }
 
-	for(int i=0; i<MAX-3; i++){
-		int operador = pop(&op);
-		/*printf("%s\n", catalogo[operador].nombre);*/
-		double resultado = catalogo[operador].op((double) pop(&datos), (double) pop(&datos));
-		/*printf("%s\n", catalogo[operador].nombre);*/
-		printf("%5.2lf\n", resultado);
-	}
+    while(op.cima != 0){
+        int operador = pop(&op);
+        op1 = pop(&datos);
+        op2 = pop(&datos);
+        printf("Realizando una %s con los operandos %.2f, %.2f\n", catalogo[operador].nombre, op1, op2);
+        double resultado = catalogo[operador].op(op1, op2);
+        /*printf("%s\n", catalogo[operador].nombre);*/
+        printf("Resultado: %5.2lf\n", resultado);
+    }
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
