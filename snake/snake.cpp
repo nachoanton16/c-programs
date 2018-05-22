@@ -12,23 +12,25 @@
 #define DERECHA 2
 #define ABAJO 3
 #define IZQUIERDA 4
-#define MAX_LENGTH 20
+#define MAX_LENGTH 5
 #define SNAKE_CHARACTER '*'
 #define FOOD_CHARACTER '+'
 #define WALL_CHAR '='
+#define MIN 1
+#define POINT 30
+#define N 30
 
 int finish = 0;
 int row, col;
 int direccion;
 int snake_length = 1;
 int comida = 1;
+int score = 0;
 
 struct Coordenadas{
     int x;
     int y;
-} snake[MAX_LENGTH], cola, nuevacola, last, last2, food;
-
-
+} snake[MAX_LENGTH], cola, nuevacola, last, last2, food, scored;
 
 void inicio(){
     getmaxyx(stdscr, row, col);
@@ -55,27 +57,30 @@ void dibujar_comida(){
 
 void drawLevel() {
     for (int i=0; i<row; i++) {
-        mvaddch(i, 0, WALL_CHAR);
+        mvaddch(i, 1, WALL_CHAR);
         mvaddch(i, col-1, WALL_CHAR);
     }
     for (int i=1; i<col-1; i++) {
-        mvaddch(0, i,WALL_CHAR);
+        mvaddch(1, i,WALL_CHAR);
         mvaddch(row-1, i, WALL_CHAR);
     }
-    /*    for (int i=25; i<55; i++) {
-          mvaddch(row/4, i, ROW_CHAR);
-          mvaddch((row/4)*3, i, ROW_CHAR);
-          }*/
+}
+
+void drawScore(){
+    scored.x = 0;
+    scored.y = col/2.5;
+    mvprintw(scored.x, scored.y, "Score: %i", score);
 }
 
 void comer(){
     if((snake[0].x == food.x)&&(snake[0].y == food.y)){
         cola = snake[snake_length-1];
-        //CAMBIAR
+
         nuevacola.x = cola.x+1;
         nuevacola.y = cola.y+1;
 
         snake[snake_length++] = nuevacola;
+        score += POINT;
 
         food.y = rand()%(col+1);
         food.x = rand()%(row+1);
@@ -161,26 +166,41 @@ void comprueba(){
                 collidesnake = true;
 
 
-        if((snake[0].x == row) || (snake[0].y == col) || (snake[0].x == 0) || (snake[0].y == 0) || collidesnake){
+        if((snake[0].x == row) || (snake[0].y == col) || (snake[0].x == 1) || (snake[0].y == 1) || collidesnake){
             timeout(-1);
             finish=2;
         }
     }
 }
 
+void guardaNombre(/*FILE *tubo, char nombre*/){
+    FILE *tubo = NULL;
+    char nombre[N];
+
+    tubo = fopen("scores.txt", "w");
+        mvprintw(row/2.5, col/3.5, "Introduzca su nombre para guardar su puntuación: ");
+        refresh();
+        scanw("%s", &nombre);
+
+        fprintf(tubo, "%s %i\n", nombre, score);
+    fclose(tubo);
+}
+
 int main(){
 
-    int salir;
+    int salir, guarda;
+    /*FILE *tubo = NULL;*/
 
     initscr();
     inicio();
-    food.x = rand()%(row-1);
-    food.y = rand()%(col-1);
+    food.x = MIN+rand()%(row-MIN);
+    food.y = MIN+rand()%(col-MIN);
     noecho();
     start_color();
     init_pair(1,COLOR_YELLOW,COLOR_BLUE);
     bkgd(COLOR_PAIR(1));
     drawLevel();
+    drawScore();
     keypad(stdscr, TRUE);
     curs_set(0);
     bienvenida();
@@ -194,9 +214,11 @@ int main(){
         obtener_tecla();
         clear();
         drawLevel();
+        drawScore();
         cambiar_direccion();
         comprueba();
         comer();
+        drawScore();
         if(!finish) {
             dibujar_snake();
             dibujar_comida();
@@ -209,10 +231,21 @@ int main(){
     else
         pierdes();
 
+    guarda = getch();
+    while(guarda != 10){
+        if(finish == 1)
+            ganas();
+        else
+            pierdes();
+    }
+    clear();
+
+    guardaNombre();
+
     do {
-      salir = getch();
+        salir = getch();
     } while(salir != 10);
-   
+
     endwin();
 
     return EXIT_SUCCESS;
