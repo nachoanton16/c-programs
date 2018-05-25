@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "bmp.h"
 
+#define UMBRAL 130
+
 const char *source= "a.bmp";
 const char *destin= "b.bmp";
 
@@ -25,7 +27,13 @@ int main(){
     /* Escala de grises */
     for (int i=0; i<pixels; i++){
         char media = imagen[i].r + imagen[i].g + imagen[i].b / 3;
-        if(media<(char)200)
+        i++;
+        char mediasig = imagen[i].r + imagen[i].g + imagen[i].b / 3;
+        i = i-2;
+        char medianant = imagen[i].r + imagen[i].g + imagen[i].b / 3;
+        i++;
+        char error = (mediasig-(char)UMBRAL)+(medianant-(char)UMBRAL);
+        if((media+error)<(char)UMBRAL)
             media = (char)0;
         else
             media = (char)255;

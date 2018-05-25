@@ -230,16 +230,16 @@ int main(){
         ganas();
     else
         pierdes();
+    usleep(70000);
 
-    guarda = getch();
-    while(guarda != 10){
+    /*guarda = getch();*/
+    /*while(guarda != 10){
         if(finish == 1)
             ganas();
         else
             pierdes();
-    }
-    clear();
-
+    }*/
+    guarda = getch();
     guardaNombre();
 
     do {
