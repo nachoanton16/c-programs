@@ -37,7 +37,7 @@ int main(){
             media = (char)0;
         else
             media = (char)255;
-        imagen[i].r = imagen[i].g = imagen[i].b = media;
+        imagen[i].r = imagen[i].g = imagen[i].b = (media+medianant+mediasig);
     }
 
     /* Escribir la imagen */
