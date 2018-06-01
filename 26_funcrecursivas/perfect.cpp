@@ -13,6 +13,7 @@ void perfectnum(int num, int divisor){
 
     if(num % divisor == 0){
         printf("%i\n", divisor);
+        suma_divisores(divisor);
     }
     return perfectnum(num, divisor-1);
 }
